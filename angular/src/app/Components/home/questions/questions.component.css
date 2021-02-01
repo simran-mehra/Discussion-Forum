@@ -1,0 +1,38 @@
+.center {
+    padding: 20px 0;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+}
+
+.main {
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius: 5;
+}
+
+.main2 {
+    width: 40%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-right: 22px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius: 5;
+}
+
+.main3 {
+    width: 45%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-right: 22px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius: 5;
+}
