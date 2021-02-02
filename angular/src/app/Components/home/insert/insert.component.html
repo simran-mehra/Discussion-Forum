@@ -1,18 +1,28 @@
 <app-head></app-head>
-<h1>vcdsnbvjhb</h1>
-
-<div class="container">
-  <div class="questionarea">
-
-  </div>
-  <div class="topicarea">
-    <h1>dsbvcbsj</h1>
-  </div>
-  <div class="keywordarea">
-    <h1>bdsfbvjhbsdv</h1>
-  </div>
-
-  <div class="buttonarea">
-    <h1>jhdfsghvg</h1>
-  </div>
+<div class="mainclass">
+    <div class="center">
+        <input type="text" [(ngModel)]="question" class="main" placeholder="Enter your question">
+    </div>
+    <div class="center">
+        <select name="topic" [(ngModel)]="choosenTopic" class="main2">
+            <option [ngValue]="i" *ngFor="let i of topic">{{i.topicname}}</option>
+        </select>
+        <input type="text" name="newTopic" [(ngModel)]="newTopic" (click)="addTopic()" class="main3" placeholder="Enter New Topic">
+        <button type="button" (click)="addTopic()" class="btn btn-info">Add</button>
+    </div>
+    <div class="center">
+        <select name="dropdown" [(ngModel)]="choosenKeyword" class="main4" multiple>
+          <option [ngValue]="i" *ngFor="let i of keyword">{{i.name}}</option>
+      </select>
+        <input type="text" class="main3" [(ngModel)]="newKeyword" placeholder="Enter New Keyword">
+        <button type="button" (click)="addKeyword()" class="btn btn-info">Add</button>
+    </div>
+    <div class="center">
+        <button type="button" (click)="submit()" class="btn btn-info">Submit</button>
+        <div *ngIf="showTopicError" class="alert alert-danger">Topic not selected</div>
+        <div *ngIf="showKeywordError" class="alert alert-danger">Keyword not selected</div>
+        <div *ngIf="showQuestionError" class="alert alert-danger">Question not written</div>
+        <div *ngIf="showError" class="alert alert-danger">Question not added</div>
+        <div *ngIf="showSuccess" class="alert alert-success">Question Added Successfully</div>
+    </div>
 </div>

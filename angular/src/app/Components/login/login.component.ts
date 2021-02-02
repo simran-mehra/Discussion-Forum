@@ -20,8 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private route: Router,
-    private service: DataService
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +47,7 @@ export class LoginComponent implements OnInit {
     {responseType: 'text'}).subscribe((data) =>
      {
         if(data === 'User matched'){
-          this.service.changeLogin(this.id);
+
           localStorage.setItem('id', this.id);
           this.route.navigateByUrl('/home');
 

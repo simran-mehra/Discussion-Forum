@@ -11,8 +11,7 @@ export class TopicComponent implements OnInit {
 
   subTopics: any;
   unSubTopics: any;
-  newSubTopics: any[] = [];
-  newUnSubTopics: any[] = [];
+  allTopics: any;
   id: any;
 
   constructor(
@@ -24,34 +23,40 @@ export class TopicComponent implements OnInit {
     this.id = localStorage.getItem('id');
     console.log(this.id);
 
-    this.http.get('http://localhost:8080/topic/subscribe/get/'+this.id).subscribe(data=>{
+    this.http.get('http://localhost:8080/topic/subscribe/get/' + this.id).subscribe(data => {
       this.subTopics = data;
     });
 
-    this.http.get('http://localhost:8080/topic/unsubscribe/get/'+this.id).subscribe(data=>{
+    this.http.get('http://localhost:8080/topic/unsubscribe/get/' + this.id).subscribe(data => {
       this.unSubTopics = data;
     });
 
   }
 
 
-  sub(index: any): void{
-    const topics = this.subTopics.splice(index,1);
-    this.unSubTopics.push(...topics);
-    this.newUnSubTopics.push(...topics);
-    console.log(this.newUnSubTopics);
 
-  }
 
-  unSub(index : any): void{
-    const topics = this.unSubTopics.splice(index,1);
-    this.subTopics.push(...topics);
-    this.newSubTopics.push(...topics);
-    console.log(this.newSubTopics);
-  }
+   unSub(index: any): void{
+     const topics = this.subTopics.splice(index, 1);
+     this.unSubTopics.push(...topics);
+   }
 
-  // save(): void{
-  //     this.http.post('http://localhost:8080/subscribe')
-  // }
+   sub(index: any): void{
+      const topics = this.unSubTopics.splice(index, 1);
+      this.subTopics.push(...topics);
+   }
+
+   submit(): void{
+     this.http.post('http://localhost:8080/topic/subscribe/' + this.id , this.subTopics,
+     {responseType: 'text'}).subscribe(data => {
+       if (data === 'true'){
+         alert('Changes saved');
+       }
+       else{
+         alert('Refresh the page and try again');
+       }
+     });
+
+   }
 
 }
