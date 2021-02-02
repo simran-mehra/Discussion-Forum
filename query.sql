@@ -16,7 +16,7 @@ create table rating(id int primary key auto_increment, answerid int, ratingcount
 
 create table email(id int primary key auto_increment, remail varchar(45), timestamp date, issuccess boolean, description longtext, subject varchar(45),userid int,foreign key(userid) references userinformation(id));
 
-create table notification1(id int primary key auto_increment,description longtext, timestamp date,
+create table notification(id int primary key auto_increment,description longtext, timestamp date,
 userid int, visited boolean default false, foreign key(userid) references userinformation(id));
 
 
