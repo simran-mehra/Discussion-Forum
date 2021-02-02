@@ -1,25 +1,41 @@
 package com.auproject.rest.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="keywordquestion")
+@Table(name = "keywordquestion")
 public class KeywordQuestion {
 
-    private int userid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private int keywordid;
     private int questionid;
+    private String keywordname;
 
-    public KeywordQuestion(){
-
+    public String getKeywordName() {
+        return keywordname;
     }
 
-    public int getUserid() {
-        return userid;
+    public void setKeywordName(String keywordname) {
+        this.keywordname = keywordname;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getKeywordid() {
+        return keywordid;
+    }
+
+    public void setKeywordid(int keywordid) {
+        this.keywordid = keywordid;
     }
 
     public int getQuestionid() {
@@ -30,4 +46,23 @@ public class KeywordQuestion {
         this.questionid = questionid;
     }
 
+    public KeywordQuestion() {
+    }
+
+    public KeywordQuestion(int id, int keywordid, int questionid,String keywordname) {
+        this.id = id;
+        this.keywordid = keywordid;
+        this.questionid = questionid;
+        this.keywordname =  keywordname;
+    }
+
+    @Override
+    public String toString() {
+        return "KeywordQuestion{" +
+                "id=" + id +
+                ", keywordid=" + keywordid +
+                ", questionid=" + questionid +
+                ", keywordname='" + keywordname + '\'' +
+                '}';
+    }
 }

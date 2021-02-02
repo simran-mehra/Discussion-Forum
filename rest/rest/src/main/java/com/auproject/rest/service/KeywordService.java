@@ -1,32 +1,32 @@
 package com.auproject.rest.service;
 
 import com.auproject.rest.dao.Keyword;
+import com.auproject.rest.dao.KeywordQuestion;
+import com.auproject.rest.repository.KeywordQuestionRepo;
 import com.auproject.rest.repository.KeywordRepo;
-import com.sun.el.parser.BooleanNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class KeywordService {
-
     @Autowired
     private KeywordRepo keywordRepo;
+    @Autowired
+    private KeywordQuestionRepo keywordQuestionRepo;
 
-    public Boolean set(Keyword keyword){
-        try{
-            keywordRepo.save(keyword);
-            return true;
-        }
-        catch(Exception e){
-            return false;
-        }
+    public Optional<Keyword> create(Keyword keyword){
+
+            int id =this.keywordRepo.save(keyword).getId();
+            return this.keywordRepo.findById(id);
+
     }
 
-    public List<Keyword> get(){
-        return keywordRepo.findAll();
+    public List<Keyword> getAllKeywords() {
+        return this.keywordRepo.findAll();
     }
 
+    public List<KeywordQuestion> getKeywords(){return this.keywordQuestionRepo.findAll();}
 }

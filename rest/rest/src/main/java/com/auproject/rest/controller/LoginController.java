@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 // Class capital
 //method camel case
 
 @RestController
 public class LoginController {
+
+
 
         @Autowired
         private UserInformationServices services;
@@ -32,6 +36,8 @@ public class LoginController {
     public  ResponseEntity<String> registerUser(@RequestBody UserInformation user){
     return new ResponseEntity<>(this.services.register(user),HttpStatus.OK);
     }
+
+
 
 
 }

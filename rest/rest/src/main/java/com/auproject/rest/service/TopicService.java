@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TopicService {
@@ -17,13 +18,16 @@ public class TopicService {
         return this.topicRepo.findAll();
     }
 
-    public Boolean create(Topic topic){
-        try{
-            this.topicRepo.save(topic);
-            return true;
-        }
-        catch(Exception e){
-            return false;
-        }
+    public Optional<Topic> create(Topic topic){
+        int id=this.topicRepo.save(topic).getId();
+        return this.topicRepo.findById(id);
+    }
+
+    public List<Topic> subscribe(int userid) {
+        return this.topicRepo.getSub(userid);
+    }
+
+    public List<Topic> unSubscribe(int userid) {
+        return this.topicRepo.unsubscribeTopic(userid);
     }
 }

@@ -1,28 +1,27 @@
 package com.auproject.rest.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name="question")
+@Table(name = "question")
 public class Question {
 
     @Id
-    private  int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    private int userId;
-    private int topicId;
-    private String timestamp;
     private String description;
-    private String isAnswered;
+    private boolean answeredflag;
+    private String timestamp;
+    private int topicid;
+    private int userid;
 
-
-    public Question(){
-
+    public Question() {
     }
 
+    ;
 
     public int getId() {
         return id;
@@ -30,30 +29,6 @@ public class Question {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getTopicId() {
-        return topicId;
-    }
-
-    public void setTopicId(int topicId) {
-        this.topicId = topicId;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getDescription() {
@@ -64,23 +39,56 @@ public class Question {
         this.description = description;
     }
 
-    public String getIsAnswered() {
-        return isAnswered;
+    public boolean getAnsweredflag() {
+        return answeredflag;
     }
 
-    public void setIsAnswered(String isAnswered) {
-        this.isAnswered = isAnswered;
+    public void setAnsweredflag(boolean answeredflag) {
+        this.answeredflag = answeredflag;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getTopicid() {
+        return topicid;
+    }
+
+    public void setTopicid(int topicid) {
+        this.topicid = topicid;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public Question(int id, String description, boolean answeredflag, String timestamp, int topicid, int userid) {
+        this.id = id;
+        this.description = description;
+        this.answeredflag = answeredflag;
+        this.timestamp = timestamp;
+        this.topicid = topicid;
+        this.userid = userid;
     }
 
     @Override
     public String toString() {
         return "Question{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", topicId=" + topicId +
-                ", timestamp='" + timestamp + '\'' +
                 ", description='" + description + '\'' +
-                ", isAnswered='" + isAnswered + '\'' +
+                ", answeredflag=" + answeredflag +
+                ", timestamp='" + timestamp + '\'' +
+                ", topicid=" + topicid +
+                ", userid=" + userid +
                 '}';
     }
 }
