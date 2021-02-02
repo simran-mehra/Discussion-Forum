@@ -5,19 +5,17 @@ import com.auproject.rest.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TopicController {
 
     @Autowired
     private TopicService topicService;
+
 
     @GetMapping("/topic")
     @CrossOrigin("*")
@@ -26,8 +24,21 @@ public class TopicController {
     }
 
     @PostMapping("/topic/create")
-    public ResponseEntity<Boolean> createTopic(Topic topic){
-        return new ResponseEntity<>(this.topicService.create(topic), HttpStatus.OK);
+    @CrossOrigin("*")
+    public Optional<Topic> createTopic(@RequestBody Topic topic){
+        return this.topicService.create(topic);
+    }
+
+    @GetMapping("/topic/subscribe/get/{userid}")
+    @CrossOrigin("*")
+    public List<Topic> subscribe(@PathVariable int userid){
+       return this.topicService.subscribe(userid);
+    }
+
+    @GetMapping("/topic/unsubscribe/get/{userid}")
+    @CrossOrigin("*")
+    public List<Topic> unSubscribe(@PathVariable int userid){
+        return this.topicService.unSubscribe(userid);
     }
 
 }

@@ -1,37 +1,36 @@
 package com.auproject.rest.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="topic")
 public class Topic {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int topicid;
 
     private int userid;
-    private String name;
+    private String topicname;
     private String timestamp;
 
     public Topic (){
 
     }
 
-    public Topic(int id, int userid, String name, String timestamp) {
-        this.id = id;
+    public Topic(int topicid, int userid, String topicname, String timestamp) {
+        this.topicid = topicid;
         this.userid = userid;
-        this.name = name;
+        this.topicname = topicname;
         this.timestamp = timestamp;
     }
 
     public int getId() {
-        return id;
+        return topicid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int topicid) {
+        this.topicid = topicid;
     }
 
     public int getUserid() {
@@ -42,12 +41,12 @@ public class Topic {
         this.userid = userid;
     }
 
-    public String getName() {
-        return name;
+    public String getTopicname() {
+        return topicname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTopicname(String topicname) {
+        this.topicname = topicname;
     }
 
     public String getTimestamp() {
@@ -61,9 +60,9 @@ public class Topic {
     @Override
     public String toString() {
         return "Topic{" +
-                "id=" + id +
+                "topicid=" + topicid +
                 ", userid=" + userid +
-                ", name='" + name + '\'' +
+                ", topicname='" + topicname + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
     }

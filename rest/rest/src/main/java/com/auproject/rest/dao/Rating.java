@@ -5,18 +5,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rating")
+@Table(name = "rating")
 public class Rating {
 
     @Id
     private int id;
+
     private int answerid;
+    private int ratingcount;
     private int userid;
     private String timestamp;
-
-    public Rating(){
-
-    }
 
     public int getId() {
         return id;
@@ -32,6 +30,14 @@ public class Rating {
 
     public void setAnswerid(int answerid) {
         this.answerid = answerid;
+    }
+
+    public int getRatingcount() {
+        return ratingcount;
+    }
+
+    public void setRatingcount(int ratingcount) {
+        this.ratingcount = ratingcount;
     }
 
     public int getUserid() {
@@ -50,6 +56,24 @@ public class Rating {
         this.timestamp = timestamp;
     }
 
+    public Rating() {};
 
+    public Rating(int id, int answerid, int ratingcount, int userid, String timestamp) {
+        this.id = id;
+        this.answerid = answerid;
+        this.ratingcount = ratingcount;
+        this.userid = userid;
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", answerid=" + answerid +
+                ", ratingcount=" + ratingcount +
+                ", userid=" + userid +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
+    }
 }
-

@@ -1,5 +1,6 @@
 package com.auproject.rest.service;
 
+import com.auproject.rest.dao.Topic;
 import com.auproject.rest.dao.UserTopic;
 import com.auproject.rest.repository.UserTopicRepo;
 import org.apache.catalina.User;
@@ -16,31 +17,36 @@ public class UserTopicService {
     private UserTopicRepo userTopicRepo;
 
 
-    @Transactional
-    public void set(List<UserTopic> userTopic){
 
-      for(UserTopic i:userTopic){
-            this.userTopicRepo.insert(i.getTopicid(),i.getUserid(),i.getTopicname());
-        }
+    public Boolean set(List<Topic> userTopic, int userid){
 
-    }
-
-    public Boolean delete(UserTopic userTopic){
-        try{
-            this.userTopicRepo.deleteTopic(userTopic.getTopicid(), userTopic.getUserid());
+        try {
+            this.userTopicRepo.deleteByUserId(userid);
+            for (Topic topic : userTopic) {
+                this.userTopicRepo.insert(topic.getId(), userid, topic.getTopicname());
+            }
             return true;
         }
         catch(Exception e){
-            System.out.println(e);
             return false;
         }
     }
 
-    public List<UserTopic> getById(int id) {
-        return this.userTopicRepo.findAllTopicById(id);
+    public Boolean delete(List<UserTopic> userTopic){
+        try {
+            for (UserTopic i : userTopic) {
+
+                this.userTopicRepo.deleteTopic(i.getTopicid(), i.getUserid());
+
+            }
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
 
-    public List<UserTopic> unsubscribeId(int id) {
-        return this.userTopicRepo.unsubscribeTopic(id);
-    }
+
+
+
 }
