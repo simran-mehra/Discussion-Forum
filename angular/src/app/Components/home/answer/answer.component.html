@@ -1,11 +1,27 @@
 <app-head></app-head>
-<div class="card m-5">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="/answer" class="btn btn-primary">Show Answer</a>
-  </div>
+<h3>Question :- {{ques.description}}</h3>
+
+
+<div *ngFor="let ans of answer; index as j" class="card m-5">
+    <div class="card-body">
+        <h5 class="card-title">Answer-{{j+1}}</h5>
+        <p class="card-text">{{ans.description}}</p>
+        <div>
+
+            <div class="star-rating">
+                <span class="rate">{{ans.ratingavg}}</span>
+                <input type="radio" id="5-stars" name={{j}} [(ngModel)]="rating" (click)="saveRating()" value="5" />
+                <label for="5-stars" class="star">&#9733;</label>
+                <input type="radio" id="4-stars" name={{j}} [(ngModel)]="rating" (click)="saveRating()" value="4" />
+                <label for="4-stars" class="star">&#9733;</label>
+                <input type="radio" id="3-stars" name={{j}} [(ngModel)]="rating" (click)="saveRating()" value="3" />
+                <label for="3-stars" class="star">&#9733;</label>
+                <input type="radio" id="2-stars" name={{j}} [(ngModel)]="rating" (click)="saveRating()" value="2" />
+                <label for="2-stars" class="star">&#9733;</label>
+                <input type="radio" id="1-star" name={{j}} [(ngModel)]="rating" (click)="saveRating()" value="1" />
+                <label for="1-star" class="star">&#9733;</label>
+            </div>
+        </div>
+        <div class="timestamp">{{ans.timestamp}}</div>
+    </div>
 </div>

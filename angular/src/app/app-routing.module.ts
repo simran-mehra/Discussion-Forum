@@ -11,15 +11,14 @@ import { AnswerComponent } from './Components/home/answer/answer.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path:'login', component: LoginComponent},
-  {path:'home', component: HomeComponent},
-  {path:'home/topic', component: TopicComponent},
-  {path: 'questions', component: QuestionsComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'home/topic', component: TopicComponent},
+  {path: 'home/questions', component: QuestionsComponent},
   {path: 'home/search', component: SearchComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'home/questions/insert', component: InsertComponent},
-  {path: 'answer', component: AnswerComponent}
-
+  {path: 'home/questions/answer', component: AnswerComponent}
 
 ];
 
@@ -28,5 +27,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents=[LoginComponent,RegisterComponent, HomeComponent, TopicComponent,
-  QuestionsComponent,SearchComponent,AnswerComponent]
+export const routingComponents = [LoginComponent, RegisterComponent, HomeComponent, TopicComponent,
+  QuestionsComponent, SearchComponent];

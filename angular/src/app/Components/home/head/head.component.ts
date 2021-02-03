@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-head',
@@ -7,14 +6,12 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./head.component.css']
 })
 export class HeadComponent implements OnInit {
-  Searchbar=false;
 
-  constructor(private ds:DataService) { }
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  onclick1(){
-    this.Searchbar=!this.Searchbar;
-  }
+
 }

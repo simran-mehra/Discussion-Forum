@@ -1,24 +1,19 @@
-<app-head></app-head>
-<div class="center">
-    <input type="text" class="main" placeholder="Enter Question">
+<div class="dropdown m-4">
+    <button class="dropbtn">{{topicHeading}}</button>
+    <div class="dropdown-content">
+        <a (click)="getTopic(-1)">All Question</a>
+        <a *ngFor="let i of topics; index as j" (click)="getTopic(j)">{{i.topicname}}</a>
+    </div>
 </div>
-<div class="center">
-    <select class="main2">
-          <option>Add Topic</option>
-            <option *ngFor="let i of option">{{i}}</option>
-        </select>
-    <input type="text" class="main3" placeholder="Enter New Topic">
-    <button type="button" class="btn btn-info">Add</button>
-</div>
-<div class="center">
-    <select class="main2">
-          <option>Add Keyword</option>
-            <option *ngFor="let i of option">{{i}}</option>
-        </select>
-    <input type="text" class="main3" placeholder="Enter New Keyword">
-    <button type="button" class="btn btn-info">Add</button>
-</div>
-
-<div class="center">
-    <button type="button" class="btn btn-info">Submit</button>
+<div *ngFor="let ques of question; index as j" class="card m-5">
+    <div class="card-header">
+        Question {{j+1}}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ques.description}}</h5>
+        <button type="button" *ngFor="let keyword of ques.keywordList" class="btn btn-secondary btn-sm ml-1" disabled>{{keyword}}</button>&nbsp;
+        <br><br>
+        <a (click)="changeScreen(ques)" class="btn btn-primary">Show Answer</a>
+        <div class="timestamp">{{ques.timestamp}}</div>
+    </div>
 </div>

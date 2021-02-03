@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HeadComponent } from './Components/home/head/head.component';
 import { InsertComponent } from './Components/home/insert/insert.component';
-
+import { AnswerComponent } from './Components/home/answer/answer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { InsertComponent } from './Components/home/insert/insert.component';
     routingComponents,
     HeadComponent,
     InsertComponent,
+    AnswerComponent,
   ],
   imports: [
     BrowserModule,

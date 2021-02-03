@@ -1,40 +1,47 @@
 <app-head></app-head>
+<div class="search">
+    <section class="search-sec">
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                <input type="text" name="question" [(ngModel)]="question" class="form-control search-slt" placeholder="Enter Search">
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                <select name="dropdown" [(ngModel)]="choosenTopic" class="form-control search-slt">
+                      <option  [ngValue]="i" *ngFor="let i of topics; index as j">{{i.topicname}}</option>
+                  </select>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 pl-2 pr-2">
+                                <button type="button" (click)="search()" class="btn btn-danger wrn-btn">Search</button>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                <button type="button" routerLink="/home/questions/insert" class="btn btn-success wrn-btn">Add New Question</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
 
-<div class="dropdown m-4">
-    <button class="dropbtn">{{topicHeading}}</button>
-    <div class="dropdown-content">
-        <a *ngFor="let i of option" (click)="getTopic(i)">{{i}}</a>
+<div *ngIf="showAllQuestion">
+    <app-questions></app-questions>
+</div>
+<div *ngIf="!showAllQuestion">
+    <div *ngFor="let ques of questionList; index as j" class="card m-5">
+        <div class="card-header">
+            Question {{j+1}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ques.description}}</h5>
+            <button type="button" *ngFor="let keyword of ques.keywordList" class="btn btn-secondary btn-sm ml-1" disabled>{{keyword}}</button>&nbsp;
+            <br><br>
+            <a (click)="changeScreen(ques)" class="btn btn-primary">Show Answer</a>
+            <div class="timestamp">{{ques.timestamp}}</div>
+        </div>
     </div>
 </div>
-
-<div class="card m-5">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="/answer" class="btn btn-primary">Show Answer</a>
-  </div>
-</div>
-<div class="card m-5">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="/answer" class="btn btn-primary">Show Answer</a>
-  </div>
-</div>
-<div class="card m-5">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Show Answer</a>
-  </div>
-</div>
-
