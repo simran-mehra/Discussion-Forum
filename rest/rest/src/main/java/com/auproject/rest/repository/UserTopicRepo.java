@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 public interface UserTopicRepo extends JpaRepository<UserTopic,Integer> {
 
@@ -32,5 +33,9 @@ public interface UserTopicRepo extends JpaRepository<UserTopic,Integer> {
     @Modifying
     @Query(value="Delete from usertopic where userid=:userid",nativeQuery = true)
     void deleteByUserId(@Param("userid") int userid);
+
+    @Query(value="Select userid from usertopic where topicid=:topicId", nativeQuery = true)
+    List<Integer> getUserIdByTopicId(@Param("topicId") int topicId);
+
 
 }

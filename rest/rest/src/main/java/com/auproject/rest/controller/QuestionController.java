@@ -29,10 +29,22 @@ public class QuestionController {
     }
 
 
-
     @PostMapping("/question")
     @CrossOrigin("*")
     public ResponseEntity<Boolean> insertQuestion(@RequestBody  QuestionList questionList){
         return new ResponseEntity<>(this.questionService.createQuestion(questionList), HttpStatus.OK);
     }
+
+    @GetMapping("/question/user/{userId}/{topicId}")
+    @CrossOrigin("*")
+    public List<QuestionGetList> getQuestion(@PathVariable int userId, @PathVariable int topicId){
+        return this.questionService.getQuestionByUserIdTopicId(userId,topicId);
+    }
+
+    @GetMapping("/question/user/{userId}")
+    @CrossOrigin("*")
+    public List<QuestionGetList> getQuestionByUser(@PathVariable int userId){
+        return this.questionService.getAllQuestionByUserId(userId);
+    }
+
 }

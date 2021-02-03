@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -20,6 +19,7 @@ public class QuestionService {
     private QuestionRepo questionRepo;
     @Autowired
     private KeywordQuestionRepo keywordQuestionRepo;
+
 
 
     public List<QuestionGetList> getAllQuestion(int userId){
@@ -93,5 +93,37 @@ public class QuestionService {
     }
 
 
+    public List<QuestionGetList> getAllQuestionByUserId(int userId) {
+        List<Question> questionList= this.questionRepo.getQuestionByUserId(userId);
+        List<QuestionGetList> mainList=new ArrayList<>();
+        for(Question ques : questionList){
+            QuestionGetList list= new QuestionGetList();
+            int quesId=ques.getId();
+            list.setId(ques.getId());
+            list.setAnsweredflag(ques.getAnsweredflag());
+            list.setKeywordList(this.keywordQuestionRepo.getKeywordId(quesId));
+            list.setDescription(ques.getDescription());
+            list.setTimestamp(ques.getTimestamp());
+            mainList.add(list);
 
+        }
+        return mainList;
+    }
+
+    public List<QuestionGetList> getQuestionByUserIdTopicId(int userId,int topicId) {
+        List<Question> questionList= this.questionRepo.getQuestionByTopicUser(userId,topicId);
+        List<QuestionGetList> mainList=new ArrayList<>();
+        for(Question ques : questionList){
+            QuestionGetList list= new QuestionGetList();
+            int quesId=ques.getId();
+            list.setId(ques.getId());
+            list.setAnsweredflag(ques.getAnsweredflag());
+            list.setKeywordList(this.keywordQuestionRepo.getKeywordId(quesId));
+            list.setDescription(ques.getDescription());
+            list.setTimestamp(ques.getTimestamp());
+            mainList.add(list);
+
+        }
+        return mainList;
+    }
 }
