@@ -30,7 +30,7 @@ public class AnswerController {
         return this.answerService.getAllAnswerByQuestionId(questionId);
     }
 
-    @PostMapping("/question/answer/update")
+    @PutMapping("/question/answer/update")
     @CrossOrigin("*")
     public Boolean updateAnswer(@RequestBody Answer answer){
 
