@@ -26,15 +26,6 @@ create table keyword(id int primary key auto_increment,name varchar(45), userid 
 
 create table keywordquestion (id int primary key auto_increment,keywordid int,keywordname varchar(45),questionid int,foreign key(keywordid) references keyword(id),foreign key(questionid) references question(id));
 
-delimiter //  
-create trigger calculate_rating_avg after insert on rating for each row
-    begin
-	declare rate int;
-	select avg(ratingcount) into rate from rating where answerid=NEW.answerid ;
-    update answer set ratingavg = rate where id=NEW.answerid;
-    end //
-delimiter ;
-
 delimiter //
 create trigger inserttopic after insert  on topic for each row
     begin
