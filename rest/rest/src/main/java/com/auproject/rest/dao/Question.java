@@ -1,6 +1,6 @@
 package com.auproject.rest.dao;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 
 import javax.persistence.*;
 
@@ -21,7 +21,7 @@ public class Question {
     public Question() {
     }
 
-    ;
+
 
     public int getId() {
         return id;

@@ -8,9 +8,10 @@ import com.auproject.rest.repository.KeywordRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 @Service
 public class SearchService {
@@ -23,7 +24,9 @@ public class SearchService {
     private QuestionService questionService;
 
     public List<QuestionGetList> searchQuestion(String question, int topicId){
+
         List<Keyword> keywordList= this.keywordRepo.findAll();
+
         List<Integer> matchedKeyword=new ArrayList<>();
         List<QuestionGetList> questionGetLists= new ArrayList<>();
 
@@ -36,7 +39,7 @@ public class SearchService {
 
         List<Integer> questionIds=this.keywordQuestionRepo.getQuestionIdByKeyword(matchedKeyword,topicId);
 
-        for (int i: questionIds){
+        for(int i:questionIds){
             questionGetLists.add(this.questionService.getSpecificQuestion(i));
         }
         return questionGetLists;

@@ -1,11 +1,7 @@
 package com.auproject.rest;
 
-import com.auproject.rest.dao.Keyword;
-import com.auproject.rest.dao.Question;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class QuestionGetList {
 
@@ -13,12 +9,30 @@ public class QuestionGetList {
 
     private String description;
     private boolean answeredflag;
+    private int userid;
     private String timestamp;
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
 
     private List<String> keywordList;
 
     public QuestionGetList(){
 
+    }
+
+    public QuestionGetList(int id, String description, boolean answeredflag, int userid, String timestamp, List<String> keywordList) {
+        this.id = id;
+        this.description = description;
+        this.answeredflag = answeredflag;
+        this.userid = userid;
+        this.timestamp = timestamp;
+        this.keywordList = keywordList;
     }
 
     public int getId() {

@@ -1,6 +1,5 @@
 package com.auproject.rest.repository;
 
-import com.auproject.rest.dao.Topic;
 import com.auproject.rest.dao.UserTopic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -9,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 public interface UserTopicRepo extends JpaRepository<UserTopic,Integer> {
 

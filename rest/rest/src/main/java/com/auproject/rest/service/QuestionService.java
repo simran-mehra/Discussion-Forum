@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -34,6 +35,7 @@ public class QuestionService {
             list.setKeywordList(this.keywordQuestionRepo.getKeywordId(quesId));
             list.setDescription(ques.getDescription());
             list.setTimestamp(ques.getTimestamp());
+            list.setUserid(ques.getUserid());
             mainList.add(list);
 
         }
@@ -53,6 +55,7 @@ public class QuestionService {
             list.setKeywordList(this.keywordQuestionRepo.getKeywordId(quesId));
             list.setDescription(ques.getDescription());
             list.setTimestamp(ques.getTimestamp());
+            list.setUserid(ques.getUserid());
             mainList.add(list);
 
         }
@@ -63,15 +66,12 @@ public class QuestionService {
         Question question = questionList.getQuestion();
         List<KeywordQuestion> keywordList = questionList.getKeywordQuestionList();
 
-        System.out.println(questionList);
-        System.out.println(question);
-        System.out.println(keywordList);
-//        System.out.println(this.questionRepo.find(this.questionRepo.save(question).getId()));
-//        this.questionRepo.save(question).getId();
+
+
         int quesId= this.questionRepo.save(question).getId();
-        System.out.println(quesId);
+
         for(KeywordQuestion keywordQuestion: keywordList){
-            System.out.println(keywordQuestion);
+
             this.keywordQuestionRepo.insert(keywordQuestion.getKeywordid(),quesId,keywordQuestion.getKeywordName());
         }
 
@@ -88,6 +88,7 @@ public class QuestionService {
         questionGetList.setKeywordList(this.keywordQuestionRepo.getKeywordId(quesId));
         questionGetList.setDescription(ques.getDescription());
         questionGetList.setTimestamp(ques.getTimestamp());
+        questionGetList.setUserid(ques.getUserid());
 
         return questionGetList;
     }
@@ -104,6 +105,7 @@ public class QuestionService {
             list.setKeywordList(this.keywordQuestionRepo.getKeywordId(quesId));
             list.setDescription(ques.getDescription());
             list.setTimestamp(ques.getTimestamp());
+            list.setUserid(ques.getUserid());
             mainList.add(list);
 
         }
@@ -121,9 +123,21 @@ public class QuestionService {
             list.setKeywordList(this.keywordQuestionRepo.getKeywordId(quesId));
             list.setDescription(ques.getDescription());
             list.setTimestamp(ques.getTimestamp());
+            list.setUserid(ques.getUserid());
             mainList.add(list);
 
         }
         return mainList;
+    }
+
+    public Boolean setQuestionAnswered(int quesId) {
+        try {
+            Optional<Question> ques = this.questionRepo.findById(quesId);
+            ques.get().setAnsweredflag(true);
+            this.questionRepo.save(ques.get());
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 }

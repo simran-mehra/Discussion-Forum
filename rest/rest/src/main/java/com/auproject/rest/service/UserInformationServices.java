@@ -16,11 +16,12 @@ public class UserInformationServices {
 
     public String login(UserInformation user) {
         Optional<UserInformation> id=userinformationrepo.findById(user.getId());
-        if(id.isEmpty()==true){
+        if(id.isEmpty()){
             return "User doesn't exist";
         }
         else{
-            String encryptedPassword = Base64.getEncoder().encodeToString(user.getPassword().getBytes());
+
+            String encryptedPassword=user.getPassword();
             if(StringUtils.isNotEmpty(user.getPassword()) && encryptedPassword.equals(id.get().getPassword()) )
             {
                 return "User matched";
@@ -35,13 +36,10 @@ public class UserInformationServices {
 
     public String register(UserInformation user) {
         Optional<UserInformation> id=userinformationrepo.findById(user.getId());
-        if(id.isEmpty()==true) {
+        if(id.isEmpty()) {
 
             try {
-                String password = user.getPassword();
-                String encryptedPassword = Base64.getEncoder().encodeToString(password.getBytes());
-                //System.out.println(encryptedPassword);
-                user.setPassword(encryptedPassword);
+
                 userinformationrepo.save(user);
                 return "User inserted into table";
             } catch (Exception e) {
@@ -55,6 +53,20 @@ public class UserInformationServices {
     }
 
 
+    public Boolean updateUser(UserInformation user) {
+        try {
+            //String password = user.getPassword();
+            //String encryptedPassword = Base64.getEncoder().encodeToString(password.getBytes());
+            //user.setPassword(encryptedPassword);
+            userinformationrepo.save(user);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 
-
+    public Optional<UserInformation> getUser(int userId) {
+        return this.userinformationrepo.findById(userId);
+    }
 }

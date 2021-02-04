@@ -2,10 +2,8 @@ package com.auproject.rest.controller;
 
 import com.auproject.rest.dao.Answer;
 import com.auproject.rest.service.AnswerService;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +35,7 @@ public class AnswerController {
         return this.answerService.updateAnswer(answer);
     }
 
-    @DeleteMapping("/question/answer/delete")
+    @PostMapping("/question/answer/delete")
     @CrossOrigin("*")
     public Boolean deleteAnswer(@RequestBody Answer answer){
 

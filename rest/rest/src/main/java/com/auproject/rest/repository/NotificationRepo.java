@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface NotificationRepo extends JpaRepository<Notification, Integer> {
 
@@ -18,4 +19,6 @@ public interface NotificationRepo extends JpaRepository<Notification, Integer> {
                 @Param("userId") int userId,@Param("timestamp") String timestamp,
                 @Param("visited") Boolean visited);
 
+    @Query(value="Select * from notification where userid=:userId order by timestamp desc, id desc",nativeQuery = true)
+    List<Notification> findByUserId(@Param("userId") int userId);
 }

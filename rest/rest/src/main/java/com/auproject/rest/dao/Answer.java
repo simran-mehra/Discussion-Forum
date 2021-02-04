@@ -1,6 +1,5 @@
 package com.auproject.rest.dao;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
@@ -17,7 +16,6 @@ public class Answer {
     private int questionid;
     private String timestamp;
     private boolean isarchive;
-    private int ratingavg;
 
     public int getId() {
         return id;
@@ -67,24 +65,17 @@ public class Answer {
         this.isarchive = isarchive;
     }
 
-    public int getRatingavg() {
-        return ratingavg;
-    }
 
-    public void setRatingavg(int ratingavg) {
-        this.ratingavg = ratingavg;
-    }
 
     public Answer() {};
 
-    public Answer(int id, String description, int userid, int questionid, String timestamp, boolean isarchived, int ratingavg) {
+    public Answer(int id, String description, int userid, int questionid, String timestamp, boolean isarchived) {
         this.id = id;
         this.description = description;
         this.userid = userid;
         this.questionid = questionid;
         this.timestamp = timestamp;
         this.isarchive = isarchive;
-        this.ratingavg = ratingavg;
     }
 
     @Override
@@ -96,7 +87,6 @@ public class Answer {
                 ", questionid=" + questionid +
                 ", timestamp='" + timestamp + '\'' +
                 ", isarchived=" + isarchive +
-                ", ratingavg=" + ratingavg +
                 '}';
     }
 }

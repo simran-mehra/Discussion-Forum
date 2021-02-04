@@ -1,8 +1,7 @@
 package com.auproject.rest.repository;
 
 import com.auproject.rest.dao.Topic;
-import com.auproject.rest.dao.UserTopic;
-import org.hibernate.id.IntegralDataTypeHolder;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -16,8 +16,7 @@ public class AnswerService {
     public Optional<Answer> addAnswer(Answer answer) {
 
             int id=this.answerRepo.save(answer).getId();
-            System.out.println(id);
-            System.out.println(answer);
+
             return this.answerRepo.findById(id);
 
     }
@@ -37,6 +36,7 @@ public class AnswerService {
     }
 
     public Boolean deleteAnswer(Answer answer) {
+
         try{
             answer.setIsarchive(true);
             this.answerRepo.save(answer);

@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AnswerRepo extends JpaRepository<Answer,Integer> {
-    @Query(value = "Select * from answer where questionid=:id and isarchive=false order by ratingavg desc", nativeQuery = true)
+    @Query(value = "Select * from answer where questionid=:id and isarchive=false order by timestamp desc, id desc", nativeQuery = true)
     List<Answer> getAnswersByQuestion(@Param("id") int id);
 }

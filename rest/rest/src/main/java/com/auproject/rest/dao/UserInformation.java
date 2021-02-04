@@ -1,6 +1,6 @@
 package com.auproject.rest.dao;
 
-import jdk.jfr.DataAmount;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

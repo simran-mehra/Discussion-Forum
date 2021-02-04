@@ -47,4 +47,10 @@ public class QuestionController {
         return this.questionService.getAllQuestionByUserId(userId);
     }
 
+    @GetMapping("/question/{quesId}")
+    @CrossOrigin("*")
+    public Boolean setQuestionAnswered(@PathVariable int quesId){
+        return this.questionService.setQuestionAnswered(quesId);
+    }
+
 }
