@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { HeadComponent } from './Components/home/head/head.component';
 import { InsertComponent } from './Components/home/insert/insert.component';
 import { AnswerComponent } from './Components/home/answer/answer.component';
+import { UserComponent } from './Components/home/user/user.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from './Components/home/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +20,16 @@ import { AnswerComponent } from './Components/home/answer/answer.component';
     HeadComponent,
     InsertComponent,
     AnswerComponent,
+    UserComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

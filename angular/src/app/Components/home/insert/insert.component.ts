@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup,FormControl,FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,11 +23,18 @@ export class InsertComponent implements OnInit {
   showQuestionError = false;
   showSuccess = false;
   showError = false;
+  dropdownTopic: FormGroup;
 
   constructor(
     private http: HttpClient,
-    private route: Router
-  ) { }
+    private route: Router,
+    private fb: FormBuilder
+    ) {
+      this.dropdownTopic = new FormGroup({
+        topicIndex: new FormControl(null)
+      });
+      this.dropdownTopic.controls.topicIndex.setValue("Topic",{onlySelf:true});
+    }
 
   ngOnInit(): void {
       this.userId = localStorage.getItem('id');
@@ -41,7 +49,8 @@ export class InsertComponent implements OnInit {
   }
 
   addTopic(): void{
-    if (this.newTopic !== ''){
+
+    if (this.newTopic !== undefined){
       const date = new Date;
       const dates = date.getFullYear() + '/' + date.getMonth() + '/' + date.getDay();
       console.log(dates);
@@ -57,7 +66,7 @@ export class InsertComponent implements OnInit {
   }
 
   addKeyword(): void{
-    if (this.newKeyword !== ''){
+    if (this.newKeyword !== undefined){
       const date = new Date;
       const dates = date.getFullYear() + '/' + date.getMonth() + '/' + date.getDay();
       console.log(dates);
@@ -78,6 +87,7 @@ export class InsertComponent implements OnInit {
     this.showSuccess = false;
     this.showError = false;
     const choosenKeywordList = [];
+    this.choosenTopic=this.dropdownTopic.value.topicIndex;
 
     if (this.choosenTopic === undefined){
         this.showTopicError = true;
@@ -114,6 +124,10 @@ export class InsertComponent implements OnInit {
         }, {responseType: 'text'}).subscribe(data => {
           if (data === 'true'){
             this.showSuccess = true;
+            this.http.get('http://localhost:8080/notify/ques/'+this.choosenTopic.id+"/"+
+            this.choosenTopic.topicname).subscribe(data=>{
+              console.log(data);
+            });
           }
           else{
             this.showError = true;
