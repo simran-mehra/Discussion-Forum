@@ -6,10 +6,10 @@ create table userinformation (id int primary key,name varchar(45), email varchar
 
 create table topic(topicid int primary key auto_increment,topicname varchar(45), timestamp date,userid int , foreign key(userid) references userinformation(id));
 
-create table question(id int primary key auto_increment,answeredflag boolean defualt false, description longtext,timestamp date,userid int , topicid int,foreign key(userid) references userinformation(id),foreign key(topicid) references topic(id));
+create table question(id int primary key auto_increment,answeredflag boolean default false, description longtext,timestamp date,userid int , topicid int,foreign key(userid) references userinformation(id),foreign key(topicid) references topic(id));
 
 
-create table answer(id int primary key auto_increment, description longtext,userid int, questionid int, timestamp date, isarchive boolean default false,foreign key(userid) references userinformation(id),foreign key(questionid) references question(id));
+create table answer(id int primary key auto_increment, description longtext,userid int, questionid int, timestamp date, isarchive boolean default false,ratingavg int,foreign key(userid) references userinformation(id),foreign key(questionid) references question(id));
 
 create table rating(id int primary key auto_increment, answerid int, ratingcount int,userid int,timestamp date, foreign key(answerid) references answer(id),foreign key(userid) references userinformation(id));
 
@@ -26,6 +26,14 @@ create table keyword(id int primary key auto_increment,name varchar(45), userid 
 
 create table keywordquestion (id int primary key auto_increment,keywordid int,keywordname varchar(45),questionid int,foreign key(keywordid) references keyword(id),foreign key(questionid) references question(id));
 
+delimiter //  
+create trigger calculate_rating_avg after insert on rating for each row
+    begin
+	declare rate int;
+	select avg(ratingcount) into rate from rating where answerid=NEW.answerid ;
+    update answer set ratingavg = rate where id=NEW.answerid;
+    end //
+delimiter ;
 
 delimiter //
 create trigger inserttopic after insert  on topic for each row
