@@ -13,7 +13,7 @@ create table answer(id int primary key auto_increment, description longtext,user
 
 
 
-create table email(id int primary key auto_increment, remail vdesarchar(45), timestamp date, issuccess varchar(8), description longtext, subject varchar(45),userid int,foreign key(userid) references userinformation(id));
+create table email(id int primary key auto_increment, remail varchar(45), timestamp date, issuccess varchar(8), description longtext, subject varchar(45),userid int,foreign key(userid) references userinformation(id));
 
 create table notification(id int primary key auto_increment,description longtext, timestamp date,userid int, visited varchar(8), foreign key(userid) references userinformation(id),foreign key(notificationid) references notification(id));
 
@@ -25,7 +25,6 @@ create table keyword(id int primary key auto_increment,name varchar(45), userid 
 create table keywordquestion (keywordid int,questionid int,foreign key(keywordid) references keyword(id),foreign key(questionid) references question(id));
 
 
-delimiter ;
 
 delimiter //
 create trigger inserttopic after insert  on topic for each row
